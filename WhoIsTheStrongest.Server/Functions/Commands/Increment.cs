@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace WhoIsTheStrongest.Entities.Functions.Commands
+namespace WhoIsTheStrongest.Server.Functions.Commands
 {
     public class Increment
     {

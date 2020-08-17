@@ -4,15 +4,15 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.DurableTask;
 using Newtonsoft.Json;
 
-namespace WhoIsTheStrongest.Entities.Functions
+namespace WhoIsTheStrongest.Server.Functions
 {
-    public interface ICounter
+    public interface ICharacterScore
     {
         void Increment();
     }
 
     [JsonObject(MemberSerialization.OptIn)]
-    public class CharacterScore : ICounter
+    public class CharacterScore : ICharacterScore
     {
         [JsonProperty("score")]
         public int Score { get; private set; }

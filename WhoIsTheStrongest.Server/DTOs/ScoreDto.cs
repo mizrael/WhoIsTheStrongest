@@ -1,6 +1,6 @@
 using System;
 
-namespace WhoIsTheStrongest.Entities.DTOs
+namespace WhoIsTheStrongest.Server.DTOs
 {
     public class ScoreDto
     {

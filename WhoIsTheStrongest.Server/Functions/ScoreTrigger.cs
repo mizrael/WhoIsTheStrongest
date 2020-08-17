@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -10,10 +9,10 @@ using Microsoft.Azure.WebJobs.Extensions.DurableTask;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using WhoIsTheStrongest.Entities.DTOs;
-using WhoIsTheStrongest.Entities.Functions.Commands;
+using WhoIsTheStrongest.Server.DTOs;
+using WhoIsTheStrongest.Server.Functions.Commands;
 
-namespace WhoIsTheStrongest.Entities.Functions
+namespace WhoIsTheStrongest.Server.Functions
 {
     public static class ScoreTrigger
     {
@@ -26,7 +25,7 @@ namespace WhoIsTheStrongest.Entities.Functions
             var command = JsonConvert.DeserializeObject<Increment>(message);
 
             var entityId = new EntityId(nameof(CharacterScore), command.CharacterId);
-            await client.SignalEntityAsync<ICounter>(entityId, e => e.Increment());
+            await client.SignalEntityAsync<ICharacterScore>(entityId, e => e.Increment());
         }
 
         [FunctionName("GetScores")]
