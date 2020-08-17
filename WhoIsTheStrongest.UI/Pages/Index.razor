@@ -41,13 +41,13 @@ else
         <tbody>
             @foreach (var score in scores)
             {
-                <tr><th>@(score.CharacterId)</th><th>@(score.Value)</th></tr>
+                <tr><td>@(score.CharacterId)</td><th>@(score.Value)</th></tr>
             }
         </tbody>
     </table>
 }
 
-<div class="alert alert-secondary" role="alert">Results may take a while to update, be patient.</div>
+<p>Results may take a while to update, be patient.</p>
 
 @code {
 
