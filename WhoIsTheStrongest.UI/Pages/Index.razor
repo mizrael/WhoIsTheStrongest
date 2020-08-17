@@ -1,0 +1,100 @@
+﻿@page "/"
+@using WhoIsTheStrongest.UI.Services
+@using System.ComponentModel.DataAnnotations
+@inject IScoreService CountersService
+
+@if(voting){
+    <EditForm Model="@voteCharacter" OnValidSubmit="IncrementScore" class="form-inline">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group mx-sm-3">
+            <InputSelect @bind-Value="voteCharacter.CharacterName" class="form-control">
+                <option value="">-- Who's the strongest? --</option>
+                @foreach (var value in characters.OrderBy(c => c))
+                    {
+                    <option value="@value">@value</option>
+                    }
+            </InputSelect>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </EditForm>
+}else{
+    <div class="alert alert-light" role="alert">uploading score....</div>
+}
+
+@if (null == scores)
+{
+    <div class="alert alert-info" role="alert">loading scores....</div>
+}
+else if (!scores.Any())
+{
+    <div class="alert alert-warning" role="alert">no votes yet!</div>
+}
+else
+{
+    <table class="table m-4">
+        <thead>
+            <tr><th>Character</th><th>Score</th></tr>
+        </thead>
+        <tbody>
+            @foreach (var score in scores)
+            {
+                <tr><th>@(score.CharacterId)</th><th>@(score.Value)</th></tr>
+            }
+        </tbody>
+    </table>
+}
+
+<div class="alert alert-secondary" role="alert">Results may take a while to update, be patient.</div>
+
+@code {
+
+    private readonly string[] characters = new[]
+    {
+        "Iron Man", "Hulk", "Thor", "Black Widow", "Captain America", "Hawkeye", "Vision", "Wanda", "Spiderman"
+    };
+
+    private VoteCharacter voteCharacter = new VoteCharacter();
+    private bool voting = true;
+
+    private IEnumerable<Score> scores;
+
+    private System.Timers.Timer _timer;
+
+    private async Task IncrementScore()
+    {
+        voting = false;
+        if (!string.IsNullOrWhiteSpace(voteCharacter.CharacterName))
+            await CountersService.Increment(voteCharacter.CharacterName);
+        voteCharacter.CharacterName = string.Empty;
+        voting = true;
+    }
+
+    protected override void OnInitialized()
+    {
+        _timer?.Dispose();
+        _timer = new System.Timers.Timer(1000);
+        _timer.Elapsed += (s, e) =>
+        {
+            InvokeAsync(async () =>
+            {
+                scores = await CountersService.GetAllAsync();
+                StateHasChanged();
+            });
+        };
+        _timer.Enabled = true;
+    }
+
+    public void Dispose()
+    {
+        _timer?.Dispose();
+    }
+
+    public class VoteCharacter
+    {
+        [Required]
+        public string CharacterName { get; set; }
+    }
+}

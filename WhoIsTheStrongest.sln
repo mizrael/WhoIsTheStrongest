@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhoIsTheStrongest.Server", "WhoIsTheStrongest.Server\WhoIsTheStrongest.Server.csproj", "{F1720277-8865-4403-B77B-F33B7EF74179}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhoIsTheStrongest.UI", "WhoIsTheStrongest.UI\WhoIsTheStrongest.UI.csproj", "{8E35607D-769B-42D1-B8B1-80295761C00F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F1720277-8865-4403-B77B-F33B7EF74179}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1720277-8865-4403-B77B-F33B7EF74179}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1720277-8865-4403-B77B-F33B7EF74179}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1720277-8865-4403-B77B-F33B7EF74179}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E35607D-769B-42D1-B8B1-80295761C00F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E35607D-769B-42D1-B8B1-80295761C00F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E35607D-769B-42D1-B8B1-80295761C00F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E35607D-769B-42D1-B8B1-80295761C00F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2B492942-09AF-49A8-A97C-36A6677923B2}
+	EndGlobalSection
+EndGlobal
